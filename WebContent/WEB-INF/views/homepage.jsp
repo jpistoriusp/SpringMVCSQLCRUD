@@ -16,8 +16,8 @@
 	<form action="removemovie.do" method="GET">
 		<input type="submit" value="Remove Movie" />
 	</form>
-	<form action="randommovie.do" method="GET">
+	<!-- <form action="randommovie.do" method="GET">
 		<input type="submit" value="Suggest Me A Random Movie!" />
-	</form>
+	</form> -->
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.skilldistillery.data;
 
 public class Movie {
 
+	private String id;
 	private String name;
 	private String year;
 //	private String director;
@@ -9,11 +10,17 @@ public class Movie {
 	public Movie() {
 	}
 	
-	public Movie(String name, String year) {
+	public Movie(String id, String name, String year) {
+		this.id = id;
 		this.name = name;
 		this.year = year;
 	}
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}

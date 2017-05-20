@@ -11,8 +11,6 @@
 <body>
 	<h2>List of Movies</h2>
 
-	<label>List of Movies:</label>
-
 	<table>
 		<c:forEach items="${movies}" var="movie">
 			<tr>
