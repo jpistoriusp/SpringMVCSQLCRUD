@@ -4,7 +4,7 @@ public class Movie {
 
 	private String name;
 	private String year;
-	private String director;
+//	private String director;
 	
 	public Movie() {
 	}
@@ -26,12 +26,12 @@ public class Movie {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	public String getDirector() {
-		return director;
-	}
-	public void setDirector(String director) {
-		this.director = director;
-	}
+//	public String getDirector() {
+//		return director;
+//	}
+//	public void setDirector(String director) {
+//		this.director = director;
+//	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -39,8 +39,8 @@ public class Movie {
 		builder.append(name);
 		builder.append(", year=");
 		builder.append(year);
-		builder.append(", director=");
-		builder.append(director);
+//		builder.append(", director=");
+//		builder.append(director);
 		builder.append("]");
 		return builder.toString();
 	}

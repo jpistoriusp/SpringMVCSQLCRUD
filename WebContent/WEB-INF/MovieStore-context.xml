@@ -9,6 +9,6 @@
 
 <!-- base --><context:component-scan base-package="com.skilldistillery"></context:component-scan>
 <!-- annot --><mvc:annotation-driven></mvc:annotation-driven>
-<!-- PDLI --><bean class="com.skilldistillery.data.MovieDAOImpl">
+<!-- PDLI --><bean class="com.skilldistillery.data.MovieStoreDAOImpl">
 </bean>
 </beans>

@@ -12,21 +12,19 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MovieStoreDAOImpl implements MovieStoreDAO {
-	
+
 	@Autowired
 	private ServletContext context;
+	private Movie movie;
 	private List<Movie> movies = new ArrayList<>();
-	
-	public MovieStoreDAOImpl() {
-	}
-	
+
 	@Override
 	public List<Movie> loadMoviesFromFile() {
 		InputStream is = context.getResourceAsStream("WEB-INF/movies.csv");
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				
+
 				String[] column = line.split("\\|");
 				String name = column[0];
 				String year = column[1];
@@ -38,4 +36,17 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		}
 		return movies;
 	}
+
+	@Override
+	public List<Movie> getMovieList() {
+		movies.clear();
+		movies = loadMoviesFromFile();
+		return movies;
+	}
+
+	@Override
+	public void addMovieToList(Movie movie) {
+		movies.add(movie);
+	}
+
 }
