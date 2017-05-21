@@ -32,20 +32,36 @@ public class MovieController {
 	@RequestMapping(path = "listmovies.do", method = RequestMethod.GET)
 	public ModelAndView listMovies(@ModelAttribute("currentMovieList") List<Movie> movies) {
 		movies = dao.getMovieList();
+		System.out.println(movies);
 		ModelAndView mv = new ModelAndView("/WEB-INF/views/listmovies.jsp", "movies", movies);
 		return mv;
 	}
+	
 	@RequestMapping(path ="addmovie.do", method = RequestMethod.GET)
-	public ModelAndView orderPizza() {
-		ModelAndView mv = new ModelAndView("WEB-INF/views/addmovie.html");
+	public ModelAndView addMovie() {
+		ModelAndView mv = new ModelAndView("WEB-INF/views/addmovie.jsp");
+		mv.addObject("dao", dao);
 		return mv;
 	}
 
 	@RequestMapping(path ="addmovie.do", method = RequestMethod.POST)
-	public ModelAndView orderPizza(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("year") String year) {
+	public ModelAndView addMovie(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("year") String year) {
 		Movie movie = new Movie(id, name, year);
-		ModelAndView mv = new ModelAndView("WEB-INF/views/homepage.jsp");
+		System.out.println(movie);
 		dao.addMovieToList(movie);
+		ModelAndView mv = new ModelAndView("WEB-INF/views/homepage.jsp");
+		return mv;
+	}
+	@RequestMapping(path ="removemovie.do", method = RequestMethod.GET)
+	public ModelAndView removeMovie() {
+		ModelAndView mv = new ModelAndView("WEB-INF/views/removemovie.jsp");
+		mv.addObject("dao", dao);
+		return mv;
+	}
+	@RequestMapping(path ="removemovie.do", method = RequestMethod.POST)
+	public ModelAndView removeMovie(@RequestParam("name") String name) {
+		dao.removeMovieFromList(name);
+		ModelAndView mv = new ModelAndView("WEB-INF/views/homepage.jsp");
 		return mv;
 	}
 //	@RequestMapping(path = "newCar.do", method = RequestMethod.GET)

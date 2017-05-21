@@ -15,6 +15,9 @@ public class Movie {
 		this.name = name;
 		this.year = year;
 	}
+	public Movie(String name) {
+		this.name = name;
+	}
 	public String getId() {
 		return id;
 	}
@@ -42,6 +45,8 @@ public class Movie {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+		builder.append("Movie [id=");
+		builder.append(id);
 		builder.append("Movie [name=");
 		builder.append(name);
 		builder.append(", year=");

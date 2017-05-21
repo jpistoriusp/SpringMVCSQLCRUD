@@ -1,6 +1,7 @@
 package com.skilldistillery.data;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +13,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 
 public class MovieStoreDAOImpl implements MovieStoreDAO {
 
@@ -43,36 +43,60 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 
 	@Override
 	public List<Movie> getMovieList() {
-		movies.clear();
-		movies = loadMoviesFromFile();
+		if (movies.isEmpty()) {
+			movies = loadMoviesFromFile();
+		}
 		return movies;
 	}
 
 	@Override
 	public void addMovieToList(Movie movie) {
-		movies.add(movie);
+		if ((movie.getName().length() & movie.getYear().length()) != 0) {
+			movies.add(movie);
+			System.out.println("in add movie");
+			System.out.println(movie);
+		}
 	}
-	
-//	private static final String d = "|";
-//	    private void loadOrders() {
-//	        String line = "Cat|Dog";
-//	        line.split("\\|");
-//	}
-//
-//	@Override
-//	public void persistList(Order order) {
-//	        String orderFile = "WEB-INF/orders.csv";
-//	        String filePath = context.getRealPath(orderFile);
-//	        System.out.println("DAO: " + filePath);
-//	        try {
-//	            PrintWriter out = new PrintWriter(new FileWriter(filePath));
-//	            for (Movie m : order.getPizzas()) {
-//	                out.println(order.getCustomerEmail()+d+m.getName()+d+m.getYear());    
-//	            }
-//	            out.close();
-//	        } catch (IOException ioe) {
-//	            ioe.printStackTrace();
-//	        }
-//	    }
+
+	@Override
+	public void removeMovieFromList(String name) {
+		int i = 0;
+		for (Movie m : movies) {
+			if (name.equalsIgnoreCase(m.getName())) {
+				movies.remove(i);
+				System.out.println("in remove movie");
+				break;
+			}
+			i++;
+		}
+	}
+
+	@Override
+	public int getNextId() {
+		int i = movies.size() + 1;
+		return i;
+	}
+
+	// private static final String d = "|";
+	// private void loadOrders() {
+	// String line = "Cat|Dog";
+	// line.split("\\|");
+	// }
+
+	// @Override
+	// public void persistList(List<Movie> movies) {
+	// String orderFile = "WEB-INF/movies.csv";
+	// String filePath = context.getRealPath(orderFile);
+	// System.out.println("DAO: " + filePath);
+	// try {
+	// PrintWriter out = new PrintWriter(new FileWriter(filePath));
+	// for (Movie movie : movies) {
+	// out.println(movie.getId()+d+movie.getName()+d+movie.getYear());
+	// }
+	// out.close();
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
 
 }
