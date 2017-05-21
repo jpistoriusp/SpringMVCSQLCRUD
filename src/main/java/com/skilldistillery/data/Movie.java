@@ -47,7 +47,7 @@ public class Movie {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Movie [id=");
 		builder.append(id);
-		builder.append("Movie [name=");
+		builder.append(", name=");
 		builder.append(name);
 		builder.append(", year=");
 		builder.append(year);

@@ -51,7 +51,9 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 
 	@Override
 	public void addMovieToList(Movie movie) {
-		if ((movie.getName().length() & movie.getYear().length()) != 0) {
+		System.out.println(movie.getName().length());
+		System.out.println(movie.getYear().length());
+		if ((movie.getName().length() !=0) && (movie.getYear().length()) != 0) {
 			movies.add(movie);
 			System.out.println("in add movie");
 			System.out.println(movie);
