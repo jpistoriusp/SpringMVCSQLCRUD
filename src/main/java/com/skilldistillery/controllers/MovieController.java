@@ -53,8 +53,9 @@ public class MovieController {
 		return mv;
 	}
 	@RequestMapping(path ="removemovie.do", method = RequestMethod.GET)
-	public ModelAndView removeMovie() {
-		ModelAndView mv = new ModelAndView("WEB-INF/views/removemovie.jsp");
+	public ModelAndView removeMovie(@ModelAttribute("currentMovieList") List<Movie> movies) {
+		movies = dao.getMovieList();
+		ModelAndView mv = new ModelAndView("WEB-INF/views/removemovie.jsp", "movies", movies);
 		mv.addObject("dao", dao);
 		return mv;
 	}
@@ -64,14 +65,4 @@ public class MovieController {
 		ModelAndView mv = new ModelAndView("WEB-INF/views/homepage.jsp");
 		return mv;
 	}
-//	@RequestMapping(path = "newCar.do", method = RequestMethod.GET)
-//	public ModelAndView newCar(Car car) {
-//		System.out.println(car);
-//		car.setCarNum(carDao.getCars().size() + 1);
-//		carDao.addCar(car);
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("carList", carDao.getCars());
-//		mv.setViewName("garage.jsp");
-//		return mv;
-//	}
 }

@@ -12,11 +12,18 @@
 	<form method="post" action="removemovie.do">
 
 		<label>Please input the movie you would like remove from the
-			library:</label><br>
-		<br> <label>Movie Title:</label><input type="text" name="name"><br>
+			library:</label><br> <br> <label>Movie Title:</label><input
+			type="text" name="name"><br> <input type="submit"
+			value="Remove Movie">
 
-		<input type="submit" value="Remove Movie">
-
+		<table>
+			<c:forEach items="${movies}" var="movie">
+				<tr>
+					<td>${movie.name}</td>
+					<td>${movie.year}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</form>
 </body>
 </html>
