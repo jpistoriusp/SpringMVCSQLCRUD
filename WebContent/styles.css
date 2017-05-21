@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+
+body {
+	background: url(moviewallpaper.jpg);
+	background-size: cover;
+
+    max-width: 100%;
+    height: 100%;
+}
