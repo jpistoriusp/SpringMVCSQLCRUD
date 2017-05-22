@@ -13,14 +13,13 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MovieStoreDAOImpl implements MovieStoreDAO {
+public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 
 	@Autowired
 	ServletContext context;
 	private Movie movie;
 	private List<Movie> movies = new ArrayList<>();
 
-	@Override
 	public List<Movie> loadMoviesFromFile() {
 		InputStream is = context.getResourceAsStream("WEB-INF/movielist.csv");
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
@@ -42,11 +41,21 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 	}
 	
 	@Override
+	public Movie getRandomMovie() {
+		Movie m = new Movie();
+		List<Movie> tempList = new ArrayList<>();
+		tempList.addAll(movies);		
+		Collections.shuffle(tempList);
+		m = tempList.remove(0);
+		return m;
+	}
+
+	@Override
 	public List<Movie> getMovieList() {
 		if (movies.isEmpty()) {
 			movies = loadMoviesFromFile();
 		}
-		
+
 		return movies;
 	}
 
@@ -54,7 +63,7 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 	public void addMovieToList(Movie movie) {
 		System.out.println(movie.getName().length());
 		System.out.println(movie.getYear().length());
-		if ((movie.getName().length() !=0) && (movie.getYear().length()) != 0) {
+		if ((movie.getName().length() != 0) && (movie.getYear().length()) != 0) {
 			movies.add(movie);
 		}
 	}
@@ -76,10 +85,24 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		int i = movies.size() + 1;
 		return i;
 	}
+
 	@Override
 	public String getMoviePic(Movie m) {
-		return "SpringMVCFileCRUD/WebContent/pics/" + m.getId() + ".jpg";
+		return "pics/" + m.getId() + ".jpg";
 	}
+
+	@Override
+	public int compareTo(Movie o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int compare(String a, String b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	// private static final String d = "|";
 	// private void loadOrders() {
 	// String line = "Cat|Dog";

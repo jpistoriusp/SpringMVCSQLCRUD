@@ -12,7 +12,6 @@
 </head>
 <body>
 	<h1>Movie Database</h1>
-	
 	<form action="listmovies.do" method="GET">
 		<button class="button">
 			<span>List Movies</span>
@@ -28,6 +27,12 @@
 	<form action="removemovie.do" method="GET">
 		<button class="button">
 			<span>Remove Movie</span>
+		</button>
+	</form>
+	<br>
+	<form action="randommovie.do" method="GET">
+		<button class="button">
+			<span>Random Movie</span>
 		</button>
 	</form>
 	<!-- <form action="randommovie.do" method="GET">

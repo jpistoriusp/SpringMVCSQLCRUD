@@ -9,29 +9,24 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Movie</title>
+<title>Random Movie</title>
 </head>
 <body>
-	<form method="post" action="removemovie.do">
-
-		<h4>Please input the movie you would like remove from the
-			library:</h4>
-	
-		<label>Movie Title:</label><input type="text" name="name"><br>
-	<button class="button" ><span>Remove Movie</span></button>
-
-		<table>
-			<c:forEach items="${movies}" var="movie">
-				<tr>
-				<td><div id="moviePic">
-				<img src="${dao.getMoviePic(movie)}" class="movie" />
+	<h4>Random Movie:</h4>
+	<table>
+		<tr>
+			<td><div id="moviePic">
+					<img src="${dao.getMoviePic(movie)}" class="movie" />
 				</div></td>
-					<td>${movie.name}</td>
-					<td>${movie.year}</td>
-					<td>${movie.genre}</td>
-				</tr>
-			</c:forEach>
-		</table>
+			<td>${movie.name}</td>
+			<td>${movie.year}</td>
+			<td>${movie.genre}</td>
+		</tr>
+	</table>
+	<form action="homepage.do" method="get">
+		<button class="button">
+			<span>Go to Homepage</span>
+		</button>
 	</form>
 </body>
 </html>

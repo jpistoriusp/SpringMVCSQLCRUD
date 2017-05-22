@@ -34,7 +34,6 @@ public class MovieController {
 		movies = dao.getMovieList();
 		System.out.println(movies);
 		ModelAndView mv = new ModelAndView("/WEB-INF/views/listmovies.jsp", "movies", movies);
-//		mv.addObject("movie", movie);
 		mv.addObject("dao", dao);
 		return mv;
 	}
@@ -65,6 +64,13 @@ public class MovieController {
 	public ModelAndView removeMovie(@RequestParam("name") String name) {
 		dao.removeMovieFromList(name);
 		ModelAndView mv = new ModelAndView("WEB-INF/views/homepage.jsp");
+		return mv;
+	}
+	@RequestMapping(path ="randommovie.do", method = RequestMethod.GET)
+	public ModelAndView removeMovie() {
+		Movie mo = dao.getRandomMovie();
+		ModelAndView mv = new ModelAndView("WEB-INF/views/randommovie.jsp", "movie", mo);
+		mv.addObject("dao", dao);
 		return mv;
 	}
 }

@@ -10,17 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>List of Movies</title>
 </head>
-<img src="SpringMVCFileCRUD/WebContent/ku.jpg"/>
-
 <body>
-	<img src="Users/Paul/SD/Java/stsworkspace/SpringMVCFileCRUD/WebContent/ku.jpg"/>
 	<h3>List of Movies</h3>
 	<table>
 		<c:forEach items="${movies}" var="movie">
 			<tr>
 				<td><div id="moviePic">
-					<%-- <img src="${dao.getMoviePic(movie)}" class="movie" /> --%>
-					<img src="SpringMVCFileCRUD/WebContent/pics/1.jpg" class="movie" />
+				<img src="${dao.getMoviePic(movie)}" class="movie" />
 				</div></td>
 				<td>${movie.name}</td>
 				<td>${movie.year}</td>
