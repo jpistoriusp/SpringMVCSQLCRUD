@@ -1,13 +1,12 @@
 package com.skilldistillery.data;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -23,7 +22,7 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 
 	@Override
 	public List<Movie> loadMoviesFromFile() {
-		InputStream is = context.getResourceAsStream("WEB-INF/movies.csv");
+		InputStream is = context.getResourceAsStream("WEB-INF/movielist.csv");
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
@@ -32,7 +31,8 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 				String id = column[0];
 				String name = column[1];
 				String year = column[2];
-				Movie movie = new Movie(id, name, year);
+				String genre = column[3];
+				Movie movie = new Movie(id, name, year, genre);
 				movies.add(movie);
 			}
 		} catch (IOException ioe) {
@@ -40,12 +40,13 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		}
 		return movies;
 	}
-
+	
 	@Override
 	public List<Movie> getMovieList() {
 		if (movies.isEmpty()) {
 			movies = loadMoviesFromFile();
 		}
+		
 		return movies;
 	}
 
@@ -55,8 +56,6 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		System.out.println(movie.getYear().length());
 		if ((movie.getName().length() !=0) && (movie.getYear().length()) != 0) {
 			movies.add(movie);
-			System.out.println("in add movie");
-			System.out.println(movie);
 		}
 	}
 
@@ -66,7 +65,6 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		for (Movie m : movies) {
 			if (name.equalsIgnoreCase(m.getName())) {
 				movies.remove(i);
-				System.out.println("in remove movie");
 				break;
 			}
 			i++;
@@ -78,7 +76,10 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		int i = movies.size() + 1;
 		return i;
 	}
-
+	@Override
+	public String getMoviePic(Movie m) {
+		return "SpringMVCFileCRUD/WebContent/pics/" + m.getId() + ".jpg";
+	}
 	// private static final String d = "|";
 	// private void loadOrders() {
 	// String line = "Cat|Dog";

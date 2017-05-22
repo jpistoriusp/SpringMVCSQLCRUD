@@ -8,4 +8,5 @@ public interface MovieStoreDAO {
 	void addMovieToList(Movie movie);
 	int getNextId();
 	void removeMovieFromList(String name);
+	String getMoviePic(Movie p);
 }
