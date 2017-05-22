@@ -1,4 +1,4 @@
-##My Spring MVC CRUD Project
+## My Spring MVC CRUD Project
 
 ####What is the project?
 This is my project for week 8 in Skill Distillery. It is a CRUD application of a movie database. This project showcases my current skills in the Spring framework and MVC modeling. The application reads in movies from a csv file with data such as movie year and genre. Upon startup, the user is presented with 4 options: to display the list of movies, to add a movie title, to remove an existing movie, and to generate a random movie.  
