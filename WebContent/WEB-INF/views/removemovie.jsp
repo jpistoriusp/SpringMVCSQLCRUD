@@ -5,7 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina"
+	rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Movie</title>
@@ -13,16 +14,18 @@
 <body>
 	<form method="post" action="removemovie.do">
 
-		<label>Please input the movie you would like remove from the
-			library:</label><br> <br> <label>Movie Title:</label><input
-			type="text" name="name"><br> <input type="submit"
-			value="Remove Movie">
+		<h4>Please input the movie you would like remove from the
+			library:</h4>
+	
+		<label>Movie Title:</label><input type="text" name="name"><br>
+	<button class="button" ><span>Remove Movie</span></button>
 
 		<table>
 			<c:forEach items="${movies}" var="movie">
 				<tr>
 					<td>${movie.name}</td>
 					<td>${movie.year}</td>
+					<td>${movie.genre}</td>
 				</tr>
 			</c:forEach>
 		</table>

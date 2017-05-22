@@ -13,14 +13,14 @@
 <body>
 	<form method="post" action="addmovie.do">
 
-<label>Please input the movie you would like added to the library:</label><br><br>
+<h4>Please input the movie you would like added to the library:</h4>
 
 <label>Movie Id:</label><input type="text" value="${dao.nextId}" name="id"><br>
 <label>Movie Title:</label><input type="text" name="name"><br>
 <label>Movie Year:</label><input type="text" name="year"><br>
 <label>Movie Genre:</label><input type="text" name="genre"><br>
 
-<input type="submit" value="Add Movie">
+	<button class="button" ><span>Add Movie</span></button>
 
 </form>
 </body>

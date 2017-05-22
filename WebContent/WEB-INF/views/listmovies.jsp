@@ -13,8 +13,8 @@
 <img src="SpringMVCFileCRUD/WebContent/ku.jpg"/>
 
 <body>
-	<h2>List of Movies</h2>
 	<img src="Users/Paul/SD/Java/stsworkspace/SpringMVCFileCRUD/WebContent/ku.jpg"/>
+	<h3>List of Movies</h3>
 	<table>
 		<c:forEach items="${movies}" var="movie">
 			<tr>
@@ -29,7 +29,7 @@
 		</c:forEach>
 	</table>
 	<form action="homepage.do" method="get">
-		<input type="submit" value="Back to Homepage">
+	<button class="button" ><span>Go to Homepage</span></button>
 	</form>
 </body>
 </html>
