@@ -32,7 +32,6 @@ public class MovieController {
 	@RequestMapping(path = "listmovies.do", method = RequestMethod.GET)
 	public ModelAndView listMovies(@ModelAttribute("currentMovieList") List<Movie> movies) {
 		movies = dao.getMovieList();
-		System.out.println(movies);
 		ModelAndView mv = new ModelAndView("/WEB-INF/views/listmovies.jsp", "movies", movies);
 		mv.addObject("dao", dao);
 		return mv;
@@ -46,9 +45,8 @@ public class MovieController {
 	}
 
 	@RequestMapping(path ="addmovie.do", method = RequestMethod.POST)
-	public ModelAndView addMovie(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("year") String year, @RequestParam("genre") String genre) {
-		Movie movie = new Movie(id, name, year, genre);
-		System.out.println(movie);
+	public ModelAndView addMovie(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("year") String year, @RequestParam("genre") String genre, @RequestParam("pic") String pic) {
+		Movie movie = new Movie(id, name, year, genre, pic);
 		dao.addMovieToList(movie);
 		ModelAndView mv = new ModelAndView("WEB-INF/views/homepage.jsp");
 		return mv;

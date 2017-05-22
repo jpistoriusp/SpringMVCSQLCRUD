@@ -32,11 +32,8 @@
 	<br>
 	<form action="randommovie.do" method="GET">
 		<button class="button">
-			<span>Random Movie</span>
+			<span>I'm Feeling Lucky!</span>
 		</button>
 	</form>
-	<!-- <form action="randommovie.do" method="GET">
-		<input type="submit" value="Suggest Me A Random Movie!" />
-	</form> -->
 </body>
 </html>

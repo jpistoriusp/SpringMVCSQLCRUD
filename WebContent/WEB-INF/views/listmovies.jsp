@@ -16,7 +16,7 @@
 		<c:forEach items="${movies}" var="movie">
 			<tr>
 				<td><div id="moviePic">
-				<img src="${dao.getMoviePic(movie)}" class="movie" />
+				<img src="${movie.pic}" class="movie" />
 				</div></td>
 				<td>${movie.name}</td>
 				<td>${movie.year}</td>

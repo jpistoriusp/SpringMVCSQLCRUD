@@ -19,6 +19,7 @@
 <label>Movie Title:</label><input type="text" name="name"><br>
 <label>Movie Year:</label><input type="text" name="year"><br>
 <label>Movie Genre:</label><input type="text" name="genre"><br>
+<label>Movie Picture URL:</label><input type="text" name="pic"><br>
 
 	<button class="button" ><span>Add Movie</span></button>
 

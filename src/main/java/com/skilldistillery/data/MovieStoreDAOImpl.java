@@ -13,26 +13,28 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
+public class MovieStoreDAOImpl implements MovieStoreDAO {
 
 	@Autowired
 	ServletContext context;
 	private Movie movie;
 	private List<Movie> movies = new ArrayList<>();
 	private int tracker;
+	private String tempPic = "pics/noImg.jpg";
+
 
 	public List<Movie> loadMoviesFromFile() {
 		InputStream is = context.getResourceAsStream("WEB-INF/movielist.csv");
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-
 				String[] column = line.split("\\|");
 				String id = column[0];
 				String name = column[1];
 				String year = column[2];
 				String genre = column[3];
-				Movie movie = new Movie(id, name, year, genre);
+				String pic = "pics/" + id + ".jpg";
+				Movie movie = new Movie(id, name, year, genre, pic);
 				movies.add(movie);
 				tracker = tracker + 1;
 			}
@@ -62,10 +64,13 @@ public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 
 	@Override
 	public void addMovieToList(Movie movie) {
-		if ((movie.getName().length() != 0)) {
+		if (movie.getName().length() != 0) {
+			if (movie.getPic().length() == 0) {
+				movie.setPic(tempPic);
+			}
 			movies.add(movie);
 		}
-		else { this.tracker -= 1 ;
+		else { this.tracker -= 1;
 		}
 	}
 
@@ -85,23 +90,6 @@ public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 	public int getNextId() {
 		this.tracker += 1;
 		return tracker;
-	}
-
-	@Override
-	public String getMoviePic(Movie m) {
-		return "pics/" + m.getId() + ".jpg";
-	}
-
-	@Override
-	public int compareTo(Movie o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int compare(String a, String b) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	// private static final String d = "|";

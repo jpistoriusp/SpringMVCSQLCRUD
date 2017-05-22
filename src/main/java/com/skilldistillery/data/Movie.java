@@ -6,6 +6,7 @@ public class Movie {
 	private String name;
 	private String year;
 	private String genre;
+	private String pic;
 	
 	public Movie() {
 	}
@@ -15,6 +16,13 @@ public class Movie {
 		this.name = name;
 		this.year = year;
 		this.genre = genre;
+	}
+	public Movie(String id, String name, String year, String genre, String pic) {
+		this.id = id;
+		this.name = name;
+		this.year = year;
+		this.genre = genre;
+		this.pic = pic;
 	}
 	public Movie(String name) {
 		this.name = name;
@@ -42,6 +50,12 @@ public class Movie {
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 	@Override
 	public String toString() {
