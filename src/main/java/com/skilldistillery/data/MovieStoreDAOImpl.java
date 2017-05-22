@@ -19,6 +19,7 @@ public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 	ServletContext context;
 	private Movie movie;
 	private List<Movie> movies = new ArrayList<>();
+	private int tracker;
 
 	public List<Movie> loadMoviesFromFile() {
 		InputStream is = context.getResourceAsStream("WEB-INF/movielist.csv");
@@ -33,6 +34,7 @@ public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 				String genre = column[3];
 				Movie movie = new Movie(id, name, year, genre);
 				movies.add(movie);
+				tracker = tracker + 1;
 			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
@@ -55,16 +57,15 @@ public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 		if (movies.isEmpty()) {
 			movies = loadMoviesFromFile();
 		}
-
 		return movies;
 	}
 
 	@Override
 	public void addMovieToList(Movie movie) {
-		System.out.println(movie.getName().length());
-		System.out.println(movie.getYear().length());
-		if ((movie.getName().length() != 0) && (movie.getYear().length()) != 0) {
+		if ((movie.getName().length() != 0)) {
 			movies.add(movie);
+		}
+		else { this.tracker -= 1 ;
 		}
 	}
 
@@ -82,8 +83,8 @@ public class MovieStoreDAOImpl implements MovieStoreDAO, Comparable<Movie> {
 
 	@Override
 	public int getNextId() {
-		int i = movies.size() + 1;
-		return i;
+		this.tracker += 1;
+		return tracker;
 	}
 
 	@Override
