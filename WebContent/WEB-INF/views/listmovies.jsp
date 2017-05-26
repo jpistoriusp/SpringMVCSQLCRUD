@@ -5,7 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina"
+	rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>List of Movies</title>
@@ -16,16 +17,22 @@
 		<c:forEach items="${movies}" var="movie">
 			<tr>
 				<td><div id="moviePic">
-				<img src="${movie.pic}" class="movie" />
-				</div></td>
+						<img src="${movie.pic}" class="movie" />
+					</div></td>
 				<td>${movie.name}</td>
 				<td>${movie.year}</td>
 				<td>${movie.genre}</td>
+				<td><form method="post" action="removemovie.do">
+				<input type="hidden" name="name" value="${movie.name}" />
+				<input type="submit" value="Remove Movie" />
+				</form></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<form action="homepage.do" method="get">
-	<button class="button" ><span>Go to Homepage</span></button>
+		<button class="button">
+			<span>Go to Homepage</span>
+		</button>
 	</form>
 </body>
 </html>

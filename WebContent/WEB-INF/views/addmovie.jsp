@@ -15,7 +15,6 @@
 
 <h4>Please input the movie you would like added to the library:</h4>
 
-<label>Movie Id:</label><input type="text" value="${dao.nextId}" name="id"><br>
 <label>Movie Title:</label><input type="text" name="name"><br>
 <label>Movie Year:</label><input type="text" name="year"><br>
 <label>Movie Genre:</label><input type="text" name="genre"><br>

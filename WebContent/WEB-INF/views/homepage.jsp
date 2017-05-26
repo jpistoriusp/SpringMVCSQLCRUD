@@ -24,12 +24,6 @@
 		</button>
 	</form>
 	<br>
-	<form action="removemovie.do" method="GET">
-		<button class="button">
-			<span>Remove Movie</span>
-		</button>
-	</form>
-	<br>
 	<form action="randommovie.do" method="GET">
 		<button class="button">
 			<span>I'm Feeling Lucky!</span>

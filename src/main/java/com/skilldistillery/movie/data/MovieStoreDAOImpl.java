@@ -32,13 +32,13 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] column = line.split("\\|");
-				String id = column[0];
+				int id = Integer.parseInt(column[0]);
 				String name = column[1];
 				String year = column[2];
 				String genre = column[3];	
 				String pic = "pics/" + id + ".jpg";
 				Movie movie = new Movie(id, name, year, genre, pic);
-				tracker = tracker + 1;
+				tracker ++;
 			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();

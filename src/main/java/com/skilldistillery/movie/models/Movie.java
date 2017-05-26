@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Movie {
 
-	private String id;
+	private int id;
 	private String name;
 	private String year;
 	private String genre;
@@ -14,13 +14,13 @@ public class Movie {
 	public Movie() {
 	}
 	
-	public Movie(String id, String name, String year, String genre) {
+	public Movie(int id, String name, String year, String genre) {
 		this.id = id;
 		this.name = name;
 		this.year = year;
 		this.genre = genre;
 	}
-	public Movie(String id, String name, String year, String genre, String pic) {
+	public Movie(int id, String name, String year, String genre, String pic) {
 		this.id = id;
 		this.name = name;
 		this.year = year;
@@ -37,10 +37,10 @@ public class Movie {
 	public Movie(String name) {
 		this.name = name;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
