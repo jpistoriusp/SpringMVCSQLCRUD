@@ -1,4 +1,6 @@
-package com.skilldistillery.data;
+package com.skilldistillery.movie.models;
+
+import java.util.List;
 
 public class Movie {
 
@@ -7,7 +9,8 @@ public class Movie {
 	private String year;
 	private String genre;
 	private String pic;
-	
+	private List<Actor> actors;
+
 	public Movie() {
 	}
 	
@@ -23,6 +26,13 @@ public class Movie {
 		this.year = year;
 		this.genre = genre;
 		this.pic = pic;
+	}
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 	public Movie(String name) {
 		this.name = name;

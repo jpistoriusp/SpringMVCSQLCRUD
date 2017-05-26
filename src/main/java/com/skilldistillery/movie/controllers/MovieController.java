@@ -1,4 +1,4 @@
-package com.skilldistillery.controllers;
+package com.skilldistillery.movie.controllers;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skilldistillery.data.Movie;
-import com.skilldistillery.data.MovieStoreDAO;
+import com.skilldistillery.movie.data.MovieStoreDAO;
+import com.skilldistillery.movie.models.Movie;
 
 @Controller
 @SessionAttributes({ "currentMovieList" })

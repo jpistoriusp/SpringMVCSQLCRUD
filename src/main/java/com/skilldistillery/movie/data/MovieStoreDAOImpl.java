@@ -1,17 +1,20 @@
-package com.skilldistillery.data;
+package com.skilldistillery.movie.data;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.skilldistillery.movie.models.Movie;
 
 public class MovieStoreDAOImpl implements MovieStoreDAO {
 
@@ -19,9 +22,9 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 	ServletContext context;
 	private Movie movie;
 	private List<Movie> movies = new ArrayList<>();
+	private List<String> actors = new ArrayList<>();
 	private int tracker;
 	private String tempPic = "pics/noImg.jpg";
-
 
 	public List<Movie> loadMoviesFromFile() {
 		InputStream is = context.getResourceAsStream("WEB-INF/movielist.csv");
@@ -32,10 +35,9 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 				String id = column[0];
 				String name = column[1];
 				String year = column[2];
-				String genre = column[3];
+				String genre = column[3];	
 				String pic = "pics/" + id + ".jpg";
 				Movie movie = new Movie(id, name, year, genre, pic);
-				movies.add(movie);
 				tracker = tracker + 1;
 			}
 		} catch (IOException ioe) {
@@ -43,12 +45,12 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 		}
 		return movies;
 	}
-	
+
 	@Override
 	public Movie getRandomMovie() {
 		Movie m = new Movie();
 		List<Movie> tempList = new ArrayList<>();
-		tempList.addAll(movies);		
+		tempList.addAll(movies);
 		Collections.shuffle(tempList);
 		m = tempList.remove(0);
 		return m;
@@ -69,8 +71,8 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 				movie.setPic(tempPic);
 			}
 			movies.add(movie);
-		}
-		else { this.tracker -= 1;
+		} else {
+			this.tracker -= 1;
 		}
 	}
 
@@ -90,6 +92,12 @@ public class MovieStoreDAOImpl implements MovieStoreDAO {
 	public int getNextId() {
 		this.tracker += 1;
 		return tracker;
+	}
+
+	@Override
+	public void persistList(List<Movie> movies) {
+		// TODO Auto-generated method stub
+
 	}
 
 	// private static final String d = "|";
