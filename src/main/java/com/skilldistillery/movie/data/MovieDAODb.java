@@ -15,4 +15,6 @@ public interface MovieDAODb {
 	Movie getMovieById(int id);
 	List<Movie> getMovieList();
 	List<Movie> getInitialMovieList();
+	void updateMovie(int id, String name, String year, String genre, String pic);
+	Movie getRandomMovie();
 }

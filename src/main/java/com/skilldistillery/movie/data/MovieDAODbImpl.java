@@ -26,14 +26,13 @@ public class MovieDAODbImpl implements MovieDAODb {
 			System.err.println("Error loading MySQL Driver!!!");
 		}
 	}
-
+	
 	@Override
 	public List<Movie> getMovieList() {
 		if (movies.isEmpty()) {
 			movies = getInitialMovieList();
 			return movies;
-		}
-		else {
+		} else {
 			List<Movie> m = new ArrayList<>();
 			try {
 				Connection conn = DriverManager.getConnection(url, user, pass);
@@ -98,10 +97,6 @@ public class MovieDAODbImpl implements MovieDAODb {
 			stmt.setString(3, genre);
 			stmt.setString(4, pic);
 			stmt.execute();
-			// ResultSet key = stmt.getGeneratedKeys();
-			// if (key.next()) {
-			// id = key.getInt(1);
-			// }
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
@@ -135,7 +130,6 @@ public class MovieDAODbImpl implements MovieDAODb {
 		Movie movie = null;
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			//
 			String sql = "SELECT id, name, year, genre, pic FROM movie WHERE id = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, input);
@@ -158,15 +152,39 @@ public class MovieDAODbImpl implements MovieDAODb {
 		}
 		return movie;
 	}
-
+	
+	@Override
+	public Movie getRandomMovie() {
+		Movie movie = null;
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String sql = "select id, name, year, genre, pic from movie order by RAND() LIMIT 1;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				int id = rs.getInt(1);
+				String name = rs.getString(2);
+				String year = rs.getString(3);
+				String genre = rs.getString(4);
+				String pic = rs.getString(5);
+				movie = new Movie(id, name, year, genre, pic);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return movie;
+	}
+	
 	@Override
 	public List<Movie> getMovieByKeyword(String query) {
 		List<Movie> mo = new ArrayList<>();
 		Movie movie = null;
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			//
-			String sql = "SELECT id, name, year, genre, pic FROM film movie LIKE ?;";
+			String sql = "SELECT id, name, year, genre, pic FROM movie LIKE ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + query + "%");
 			ResultSet rs = stmt.executeQuery();
@@ -199,15 +217,32 @@ public class MovieDAODbImpl implements MovieDAODb {
 			PreparedStatement stmt2 = conn.prepareStatement(sql2);
 			stmt2.setString(1, moviename);
 			ResultSet set = stmt2.executeQuery();
-			if(set.next()){
-			String sql1 = "DELETE FROM movie_has_actor Where movie_id = ?;";
-			PreparedStatement stmt1 = conn.prepareStatement(sql1);
-			stmt1.setInt(1, set.getInt(1));
-			stmt1.executeUpdate();
+			if (set.next()) {
+				String sql1 = "DELETE FROM movie_has_actor Where movie_id = ?;";
+				PreparedStatement stmt1 = conn.prepareStatement(sql1);
+				stmt1.setInt(1, set.getInt(1));
+				stmt1.executeUpdate();
 			}
 			String sql = "DELETE FROM movie Where name = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, moviename);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateMovie(int id, String name, String year, String genre, String pic) {
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String sql = "UPDATE movie SET name = ?, year = ?, genre = ?, pic = ? WHERE id = ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, name);
+			stmt.setString(2, year);
+			stmt.setString(3, genre);
+			stmt.setString(4, pic);
+			stmt.setInt(5, id);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
