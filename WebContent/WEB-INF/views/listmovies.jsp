@@ -5,6 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina"
 	rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -14,11 +18,7 @@
 <body>
 	<h3>List of Movies</h3>
 	<form method="get" action="filtermovie.do">
-	<label>Filter Movies:</label><input type="text" name="filtername"><br>
-		<button class="button">
-			<span>Filter Movies</span>
-		</button>
-	</form>
+	<label>Quick Search: <input id="search" type="text"></label>
 	<table>
 		<c:forEach items="${movies}" var="movie">
 			<tr>
@@ -51,5 +51,6 @@
 			<span>Go to Homepage</span>
 		</button>
 	</form>
+<script src="test.js"></script>  
 </body>
 </html>

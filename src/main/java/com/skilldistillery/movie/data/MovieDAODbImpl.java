@@ -158,7 +158,7 @@ public class MovieDAODbImpl implements MovieDAODb {
 		Movie movie = null;
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "select id, name, year, genre, pic from movie order by RAND() LIMIT 1;";
+			String sql = "SELECT id, name, year, genre, pic from movie order by RAND() LIMIT 1;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -184,7 +184,7 @@ public class MovieDAODbImpl implements MovieDAODb {
 		Movie movie = null;
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT id, name, year, genre, pic FROM movie LIKE ?;";
+			String sql = "SELECT id, name, year, genre, pic FROM movie WHERE name LIKE ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + query + "%");
 			ResultSet rs = stmt.executeQuery();
